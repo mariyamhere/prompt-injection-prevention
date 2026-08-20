@@ -15,6 +15,7 @@ Baseline security practices to prevent workflow corruption: [Python Notebook]([u
 <img width="1489" height="333" alt="image" src="https://github.com/user-attachments/assets/0febc35a-c01d-4324-ac93-158e1ace8a18" />
 
 
+
 1. It uses regular expression filters to intercept and block known command-override signatures instantly.
 2. It encapsulates untrusted inputs within strict token tags (USER_DATA_START / USER_DATA_END) to help the model structurally differentiate developer commands from user-supplied data.
 3. It embeds high-priority security instructions directly into the prompt stream, explicitly commanding the model never to adopt new personas or obey instructions found inside data blocks.
