@@ -6,23 +6,26 @@ LLMs we're using today are trained on the Transformer architecture. To simplify 
 
 Since your prompt that LLMs get and the answer they produce are in natural language, manipulating this pipeline also includes using malicious prompts in natural language, and that's what makes it harder to detect.
 
-## Most Common Ways Your Prompts can be Injected
-
-- Direct attacks where someone types a command to trick or override the AI's original rules, usually because user text wasn't safely separated.
-- Hidden attacks tucked away inside external files, websites, or documents that the AI reads, tricking it without the user noticing.
-- Tricky phrases or mixed messages that confuse the AI so it misinterprets its main instructions and follows bad commands instead.
-- Sneaky questions meant to steal secret information, like system settings, internal instructions, or private chats.
-
 ## 4 Ways to Protect Against Prompt Injection
 
 ### Testing on Python Notebook:
 
 Baseline security practices to prevent workflow corruption: [Python Notebook]([url](https://github.com/mariyamhere/prompt-injection-prevention/blob/main/protect_from_prompt_injection.ipynb))
 
+<img width="1489" height="333" alt="image" src="https://github.com/user-attachments/assets/0febc35a-c01d-4324-ac93-158e1ace8a18" />
+
+
 1. It uses regular expression filters to intercept and block known command-override signatures instantly.
 2. It encapsulates untrusted inputs within strict token tags (USER_DATA_START / USER_DATA_END) to help the model structurally differentiate developer commands from user-supplied data.
 3. It embeds high-priority security instructions directly into the prompt stream, explicitly commanding the model never to adopt new personas or obey instructions found inside data blocks.
 4. Audits the generated text response after inference to detect whether the model accidentally complied with an injection attempt (e.g., checking for leaked system instructions).
+
+## Most Common Ways Your Prompts can be Injected
+
+- Direct attacks where someone types a command to trick or override the AI's original rules, usually because user text wasn't safely separated.
+- Hidden attacks tucked away inside external files, websites, or documents that the AI reads, tricking it without the user noticing.
+- Tricky phrases or mixed messages that confuse the AI so it misinterprets its main instructions and follows bad commands instead.
+- Sneaky questions meant to steal secret information, like system settings, internal instructions, or private chats.
 
 ## Tips
 
