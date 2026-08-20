@@ -6,7 +6,14 @@ LLMs we're using today are trained on the Transformer architecture. To simplify 
 
 Since your prompt that LLMs get and the answer they produce are in natural language, manipulating this pipeline also includes using malicious prompts in natural language, and that's what makes it harder to detect.
 
-## 4 Ways to Protect Against Prompt Injection
+## Most Common Ways Your Prompts can be Injected
+
+- Direct attacks where someone types a command to trick or override the AI's original rules, usually because user text wasn't safely separated.
+- Hidden attacks tucked away inside external files, websites, or documents that the AI reads, tricking it without the user noticing.
+- Tricky phrases or mixed messages that confuse the AI so it misinterprets its main instructions and follows bad commands instead.
+- Sneaky questions meant to steal secret information, like system settings, internal instructions, or private chats.
+
+## 7 Ways to Protect Against Prompt Injection
 
 ### Testing on Python Notebook:
 
@@ -21,15 +28,8 @@ Baseline security practices to prevent workflow corruption: [Python Notebook]([u
 3. It embeds high-priority security instructions directly into the prompt stream, explicitly commanding the model never to adopt new personas or obey instructions found inside data blocks.
 4. Audits the generated text response after inference to detect whether the model accidentally complied with an injection attempt (e.g., checking for leaked system instructions).
 
-## Most Common Ways Your Prompts can be Injected
+Bonus
 
-- Direct attacks where someone types a command to trick or override the AI's original rules, usually because user text wasn't safely separated.
-- Hidden attacks tucked away inside external files, websites, or documents that the AI reads, tricking it without the user noticing.
-- Tricky phrases or mixed messages that confuse the AI so it misinterprets its main instructions and follows bad commands instead.
-- Sneaky questions meant to steal secret information, like system settings, internal instructions, or private chats.
-
-## Tips
-
-- Note that, attackers can easily bypass heuristic and pattern matching by using typos, synonyms, non-English languages, zero-width spaces, or encoding tricks (e.g., base64 encoding). Instead of matching exact text patterns, use a smaller, dedicated classification model (like Llama Guard or NeMo Guardrails) to evaluate the intent and semantic meaning of the input.
-- Save your secrets (such as API keys) on server-side and never ship them in the frontend code, so even if your bot is successfully manipulated to give out secrets, it's unable to access your secrets.
-- Limit the tool access LLMs have while building agents, and keep Human-in-the-Loop approval before crucial writes in your dbs, repos or other data corpora.
+5. Note that, attackers can easily bypass heuristic and pattern matching by using typos, synonyms, non-English languages, zero-width spaces, or encoding tricks (e.g., base64 encoding). Instead of matching exact text patterns, use a smaller, dedicated classification model (like Llama Guard or NeMo Guardrails) to evaluate the intent and semantic meaning of the input.
+6. Save your secrets (such as API keys) on server-side and never ship them in the frontend code, so even if your bot is successfully manipulated to give out secrets, it's unable to access your secrets.
+7.  Limit the tool access LLMs have while building agents, and keep Human-in-the-Loop approval before crucial writes in your dbs, repos or other data corpora.
