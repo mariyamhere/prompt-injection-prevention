@@ -17,9 +17,10 @@ Since your prompt that LLMs get and the answer they produce are in natural langu
 
 ### Testing on Python Notebook:
 
-Baseline security practices to prevent workflow corruption: [Python Notebook]([url](https://github.com/mariyamhere/prompt-injection-prevention/blob/main/protect_from_prompt_injection.ipynb))
+Baseline security practices to prevent workflow corruption:
 
 <img width="1489" height="333" alt="image" src="https://github.com/user-attachments/assets/0febc35a-c01d-4324-ac93-158e1ace8a18" />
+
 
 
 
@@ -28,7 +29,7 @@ Baseline security practices to prevent workflow corruption: [Python Notebook]([u
 3. It embeds high-priority security instructions directly into the prompt stream, explicitly commanding the model never to adopt new personas or obey instructions found inside data blocks.
 4. Audits the generated text response after inference to detect whether the model accidentally complied with an injection attempt (e.g., checking for leaked system instructions).
 
-Bonus
+### Bonus
 
 5. Note that, attackers can easily bypass heuristic and pattern matching by using typos, synonyms, non-English languages, zero-width spaces, or encoding tricks (e.g., base64 encoding). Instead of matching exact text patterns, use a smaller, dedicated classification model (like Llama Guard or NeMo Guardrails) to evaluate the intent and semantic meaning of the input.
 6. Save your secrets (such as API keys) on server-side and never ship them in the frontend code, so even if your bot is successfully manipulated to give out secrets, it's unable to access your secrets.
